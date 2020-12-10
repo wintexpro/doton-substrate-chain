@@ -280,18 +280,9 @@ parameter_types! {
     pub NFTTokenId: chainbridge::ResourceId = chainbridge::derive_resource_id(1, &blake2_128(b"NFT"));
 }
 
-impl erc721::Trait for Runtime {
-	type Event = Event;
-	type Identifier = NFTTokenId;
-}
-
-impl example::Trait for Runtime {
-	type Event = Event;
-	type BridgeOrigin = chainbridge::EnsureBridge<Runtime>;
-	type Currency = pallet_balances::Module<Runtime>;
-	type HashId = HashId;
-	type NativeTokenId = NativeTokenId;
-	type Erc721Id = NFTTokenId;
+impl doton::Trait for Runtime {
+  type Event = Event;
+  type BridgeOrigin = chainbridge::EnsureBridge<Runtime>;
 }
 
 // Create the runtime by composing the FRAME pallets that were previously configured.
@@ -310,8 +301,7 @@ construct_runtime!(
 		TransactionPayment: pallet_transaction_payment::{Module, Storage},
 		Sudo: pallet_sudo::{Module, Call, Config<T>, Storage, Event<T>},
 		ChainBridge: chainbridge::{Module, Call, Storage, Event<T>},
-		Example: example::{Module, Call, Event<T>},
-		Erc721: erc721::{Module, Call, Storage, Event<T>},
+		Doton: doton::{Module, Call, Storage, Event<T>},
 	}
 );
 
