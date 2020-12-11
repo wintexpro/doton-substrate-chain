@@ -90,8 +90,8 @@ pub mod opaque {
 }
 
 pub const VERSION: RuntimeVersion = RuntimeVersion {
-	spec_name: create_runtime_str!("chainbridge-substrate-chain"),
-	impl_name: create_runtime_str!("chainbridge-substrate-chain"),
+	spec_name: create_runtime_str!("doton-substrate-chain"),
+	impl_name: create_runtime_str!("doton-substrate-chain"),
 	authoring_version: 1,
 	spec_version: 1,
 	impl_version: 1,

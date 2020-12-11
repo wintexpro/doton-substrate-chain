@@ -2,7 +2,7 @@
 
 GIT_SHORT_COMMIT=`git rev-parse --short HEAD`
 TIMESTAMP=`date -u +%Y%m%d%H%M%S`
-IMAGE_NAME="chainsafe/chainbridge-substrate-chain"
+IMAGE_NAME="wintex/doton-substrate-chain"
 TAG=${TAG:-"${TIMESTAMP}-${GIT_SHORT_COMMIT}"}
 
 

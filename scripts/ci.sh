@@ -29,6 +29,6 @@ case $TARGET in
 		;;
 
 	"runtime-test")
-		cargo test -p chainbridge-substrate-chain
+		cargo test -p doton-substrate-chain
 		;;
 esac

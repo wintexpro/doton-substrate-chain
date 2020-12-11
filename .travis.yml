@@ -9,7 +9,7 @@ cache: cargo
 env:
   global:
     - RUST_BACKTRACE=1
-    - IMAGE_NAME="chainsafe/chainbridge-substrate-chain"
+    - IMAGE_NAME="wintex/doton-substrate-chain"
 
 before_install:
   - df -h

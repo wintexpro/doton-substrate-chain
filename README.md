@@ -1,4 +1,4 @@
-# chainbridge-substrate-chain
+# doton-substrate-chain
 
 A simple substrate chain for testing and demo purposes.
 

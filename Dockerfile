@@ -11,9 +11,9 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV RUST_TOOLCHAIN=nightly-2020-08-16
 
 ARG PROFILE=release
-WORKDIR /chainbridge-substrate-chain
+WORKDIR /doton-substrate-chain
 
-COPY . /chainbridge-substrate-chain
+COPY . /doton-substrate-chain
 
 RUN apt-get update && \
 	apt-get dist-upgrade -y -o Dpkg::Options::="--force-confold" && \
@@ -31,20 +31,20 @@ RUN curl https://sh.rustup.rs -sSf | sh -s -- -y && \
 
 FROM phusion/baseimage:0.10.2
 LABEL maintainer="david@chainsafe.io"
-LABEL description="This is the 2nd stage: a very small image that contains the chainbridge-substrate-chain binary and will be used by users."
+LABEL description="This is the 2nd stage: a very small image that contains the doton-substrate-chain binary and will be used by users."
 ARG PROFILE=release
 
 RUN mv /usr/share/ca* /tmp && \
 	rm -rf /usr/share/*  && \
 	mv /tmp/ca-certificates /usr/share/ && \
-	mkdir -p /root/.local/share/chainbridge-substrate-chain && \
-	ln -s /root/.local/share/chainbridge-substrate-chain /data
+	mkdir -p /root/.local/share/doton-substrate-chain && \
+	ln -s /root/.local/share/doton-substrate-chain /data
 
-COPY --from=builder /chainbridge-substrate-chain/target/$PROFILE/chainbridge-substrate-chain /usr/local/bin
+COPY --from=builder /doton-substrate-chain/target/$PROFILE/doton-substrate-chain /usr/local/bin
 
 # checks
-RUN ldd /usr/local/bin/chainbridge-substrate-chain && \
-	/usr/local/bin/chainbridge-substrate-chain --version
+RUN ldd /usr/local/bin/doton-substrate-chain && \
+	/usr/local/bin/doton-substrate-chain --version
 
 # Shrinking
 RUN rm -rf /usr/lib/python* && \
@@ -53,8 +53,8 @@ RUN rm -rf /usr/lib/python* && \
 ## Add chain resources to image
 #COPY res /resources/
 
-# USER chainbridge-substrate-chain # see above
+# USER doton-substrate-chain # see above
 EXPOSE 30333 9933 9944
 VOLUME ["/data"]
 
-CMD ["/usr/local/bin/chainbridge-substrate-chain"]
+CMD ["/usr/local/bin/doton-substrate-chain"]
