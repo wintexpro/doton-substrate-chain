@@ -22,7 +22,7 @@ jsonrpc-core = '15.0.0'
 structopt = '0.3.8'
 
 # local dependencies
-chainbridge-substrate-chain-runtime = { path = '../runtime', version = '2.0.0' }
+doton-substrate-chain-runtime = { path = '../runtime', version = '2.0.0' }
 
 # Substrate dependencies
 frame-benchmarking = '2.0.0'
@@ -53,4 +53,4 @@ substrate-frame-rpc-system = '2.0.0'
 
 [features]
 default = []
-runtime-benchmarks = ['chainbridge-substrate-chain-runtime/runtime-benchmarks']
+runtime-benchmarks = ['doton-substrate-chain-runtime/runtime-benchmarks']

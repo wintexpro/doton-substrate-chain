@@ -1,5 +1,5 @@
 use sp_core::{Pair, Public, sr25519};
-use chainbridge_substrate_chain_runtime::{
+use doton_substrate_chain_runtime::{
 	AccountId, AuraConfig, BalancesConfig, GenesisConfig, GrandpaConfig,
 	SudoConfig, SystemConfig, WASM_BINARY, Signature
 };
