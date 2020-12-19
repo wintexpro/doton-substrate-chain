@@ -1,14 +1,11 @@
-# Adapted from github.com/centrifuge/centrifuge-chain
-
 # Note: We don't use Alpine and its packaged Rust/Cargo because they're too often out of date,
 # preventing them from being used to build Substrate/Polkadot.
 
 FROM phusion/baseimage:0.10.2 as builder
-LABEL maintainer="david@chainsafe.io"
 LABEL description="This is the build stage for the node. Here the binary is created."
 
 ENV DEBIAN_FRONTEND=noninteractive
-ENV RUST_TOOLCHAIN=nightly-2020-08-16
+ENV RUST_TOOLCHAIN=nightly-2020-10-01
 
 ARG PROFILE=release
 WORKDIR /doton-substrate-chain
@@ -30,12 +27,11 @@ RUN curl https://sh.rustup.rs -sSf | sh -s -- -y && \
 # ===== SECOND STAGE ======
 
 FROM phusion/baseimage:0.10.2
-LABEL maintainer="david@chainsafe.io"
 LABEL description="This is the 2nd stage: a very small image that contains the doton-substrate-chain binary and will be used by users."
 ARG PROFILE=release
 
 RUN mv /usr/share/ca* /tmp && \
-	rm -rf /usr/share/*  && \
+	rm -rf /usr/share/* && \
 	mv /tmp/ca-certificates /usr/share/ && \
 	mkdir -p /root/.local/share/doton-substrate-chain && \
 	ln -s /root/.local/share/doton-substrate-chain /data
@@ -50,10 +46,6 @@ RUN ldd /usr/local/bin/doton-substrate-chain && \
 RUN rm -rf /usr/lib/python* && \
 	rm -rf /usr/bin /usr/sbin /usr/share/man
 
-## Add chain resources to image
-#COPY res /resources/
-
-# USER doton-substrate-chain # see above
 EXPOSE 30333 9933 9944
 VOLUME ["/data"]
 
