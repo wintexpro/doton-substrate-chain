@@ -16,6 +16,7 @@ You will need to add these definitions to the developer settings:
   "chainbridge::ChainId": "u8",
   "ChainId": "u8",
   "ResourceId": "[u8; 32]",
+  "Nonce": "u64",
   "DepositNonce": "u64",
   "ProposalVotes": {
     "votes_for": "Vec<AccountId>",
