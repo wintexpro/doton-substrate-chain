@@ -14,6 +14,7 @@ You will need to add these definitions to the developer settings:
 {
   "Message": "Text",
   "chainbridge::ChainId": "u8",
+  "ExtAddress": "Text",
   "ChainId": "u8",
   "ResourceId": "[u8; 32]",
   "Nonce": "u64",
