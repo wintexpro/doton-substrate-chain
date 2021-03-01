@@ -64,6 +64,18 @@ git = 'https://github.com/wintexpro/doton-substrate'
 package = 'simple-message-pallet'
 tag = 'v1.3.0'
 
+[dependencies.example]
+default-features = false
+git = 'https://github.com/wintexpro/doton-substrate'
+package = 'example-pallet'
+tag = 'v1.3.0'
+
+[dependencies.erc721]
+default-features = false
+git = 'https://github.com/wintexpro/doton-substrate'
+package = 'example-erc721'
+tag = 'v1.3.0'
+
 [features]
 default = ['std']
 runtime-benchmarks = [
@@ -105,5 +117,6 @@ std = [
     'sp-version/std',
     'chainbridge/std',
     'doton/std',
+    'example/std',
 ]
 

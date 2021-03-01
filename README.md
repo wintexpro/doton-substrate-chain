@@ -24,6 +24,11 @@ You will need to add these definitions to the developer settings:
     "votes_against": "Vec<AccountId>",
     "status": "enum"
   },
+  "Erc721Token": {
+    "id": "TokenId",
+    "metadata": "Vec<u8>"
+  },
+  "TokenId": "U256",
   "Address": "AccountId",
   "LookupSource": "AccountId"
 }

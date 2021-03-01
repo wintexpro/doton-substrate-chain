@@ -285,6 +285,20 @@ impl doton::Trait for Runtime {
   type BridgeOrigin = chainbridge::EnsureBridge<Runtime>;
 }
 
+impl erc721::Trait for Runtime {
+	type Event = Event;
+	type Identifier = NFTTokenId;
+}
+
+impl example::Trait for Runtime {
+	type Event = Event;
+	type BridgeOrigin = chainbridge::EnsureBridge<Runtime>;
+	type Currency = pallet_balances::Module<Runtime>;
+	type HashId = HashId;
+	type NativeTokenId = NativeTokenId;
+	type Erc721Id = NFTTokenId;
+}
+
 // Create the runtime by composing the FRAME pallets that were previously configured.
 construct_runtime!(
 	pub enum Runtime where
@@ -302,6 +316,8 @@ construct_runtime!(
 		Sudo: pallet_sudo::{Module, Call, Config<T>, Storage, Event<T>},
 		ChainBridge: chainbridge::{Module, Call, Storage, Event<T>},
 		Doton: doton::{Module, Call, Storage, Event<T>},
+		Example: example::{Module, Call, Event<T>},
+		Erc721: erc721::{Module, Call, Storage, Event<T>},
 	}
 );
 
