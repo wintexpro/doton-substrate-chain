@@ -30,6 +30,11 @@ You will need to add these definitions to the developer settings:
   },
   "TokenId": "U256",
   "Address": "AccountId",
-  "LookupSource": "AccountId"
+  "LookupSource": "AccountId",
+  "VrfResult": {
+    "pk": "Vec<u8>",
+    "val": "Vec<u8>",
+    "proof": "Vec<u8>"
+  }
 }
 ```
