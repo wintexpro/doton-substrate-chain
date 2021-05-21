@@ -260,8 +260,8 @@ impl pallet_sudo::Trait for Runtime {
 }
 
 parameter_types! {
-    pub const ChainId: u8 = 1;
-    pub const ProposalLifetime: BlockNumber = 1000;
+		pub const ChainId: u8 = 1;
+		pub const ProposalLifetime: BlockNumber = 1000;
 }
 
 impl chainbridge::Trait for Runtime {
@@ -273,16 +273,27 @@ impl chainbridge::Trait for Runtime {
 }
 
 parameter_types! {
-    pub HashId: chainbridge::ResourceId = chainbridge::derive_resource_id(1, &blake2_128(b"hash"));
-    // Note: Chain ID is 0 indicating this is native to another chain
-    pub NativeTokenId: chainbridge::ResourceId = chainbridge::derive_resource_id(0, &blake2_128(b"DAV"));
+		pub HashId: chainbridge::ResourceId = chainbridge::derive_resource_id(1, &blake2_128(b"hash"));
+		// Note: Chain ID is 0 indicating this is native to another chain
+		pub NativeTokenId: chainbridge::ResourceId = chainbridge::derive_resource_id(0, &blake2_128(b"DAV"));
 
-    pub NFTTokenId: chainbridge::ResourceId = chainbridge::derive_resource_id(1, &blake2_128(b"NFT"));
+		pub NFTTokenId: chainbridge::ResourceId = chainbridge::derive_resource_id(1, &blake2_128(b"NFT"));
 }
 
 impl doton::Trait for Runtime {
-  type Event = Event;
-  type BridgeOrigin = chainbridge::EnsureBridge<Runtime>;
+	type Event = Event;
+	type BridgeOrigin = chainbridge::EnsureBridge<Runtime>;
+}
+
+parameter_types! {
+	pub const MaxActiveRelayers: u8 = 2;
+	pub const EpochDuration: u8 = 10;
+}
+
+impl dorr::Trait for Runtime {
+	type Event = Event;
+	type MaxActiveRelayers = MaxActiveRelayers;
+	type EpochDuration = EpochDuration;
 }
 
 impl erc721::Trait for Runtime {
@@ -316,6 +327,7 @@ construct_runtime!(
 		Sudo: pallet_sudo::{Module, Call, Config<T>, Storage, Event<T>},
 		ChainBridge: chainbridge::{Module, Call, Storage, Event<T>},
 		Doton: doton::{Module, Call, Storage, Event<T>},
+		Dorr: dorr::{Module, Call, Storage, Event<T>},
 		Example: example::{Module, Call, Event<T>},
 		Erc721: erc721::{Module, Call, Storage, Event<T>},
 	}
@@ -355,6 +367,12 @@ pub type Executive = frame_executive::Executive<
 >;
 
 impl_runtime_apis! {
+	// impl dorr::Dorr<Block, AccountId> for Runtime {
+	// 	fn get_active_relayers() -> Vec<T::AccountId> {
+			
+	// 	}
+	// }
+
 	impl sp_api::Core<Block> for Runtime {
 		fn version() -> RuntimeVersion {
 			VERSION
