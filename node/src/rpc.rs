@@ -13,6 +13,8 @@ use sp_blockchain::{Error as BlockChainError, HeaderMetadata, HeaderBackend};
 use sp_block_builder::BlockBuilder;
 pub use sc_rpc_api::DenyUnsafe;
 use sp_transaction_pool::TransactionPool;
+use dorr_rpc;
+use dorr;
 
 
 /// Full client dependencies.
@@ -34,6 +36,7 @@ pub fn create_full<C, P>(
 	C: Send + Sync + 'static,
 	C::Api: substrate_frame_rpc_system::AccountNonceApi<Block, AccountId, Index>,
 	C::Api: pallet_transaction_payment_rpc::TransactionPaymentRuntimeApi<Block, Balance>,
+	C::Api: dorr::DorrRuntimeApi<Block>,
 	C::Api: BlockBuilder<Block>,
 	P: TransactionPool + 'static,
 {
@@ -53,6 +56,10 @@ pub fn create_full<C, P>(
 
 	io.extend_with(
 		TransactionPaymentApi::to_delegate(TransactionPayment::new(client.clone()))
+	);
+
+	io.extend_with(
+		dorr_rpc::DorrRpcApi::to_delegate(dorr_rpc::DorrRpc::new(client.clone()))
 	);
 
 	// Extend this RPC with a custom API by using the following syntax.

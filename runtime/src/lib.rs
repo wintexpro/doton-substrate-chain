@@ -294,6 +294,7 @@ impl dorr::Trait for Runtime {
 	type Event = Event;
 	type MaxActiveRelayers = MaxActiveRelayers;
 	type EpochDuration = EpochDuration;
+	type RandomnessSource = RandomnessCollectiveFlip;
 }
 
 impl erc721::Trait for Runtime {
@@ -367,12 +368,6 @@ pub type Executive = frame_executive::Executive<
 >;
 
 impl_runtime_apis! {
-	// impl dorr::Dorr<Block, AccountId> for Runtime {
-	// 	fn get_active_relayers() -> Vec<T::AccountId> {
-			
-	// 	}
-	// }
-
 	impl sp_api::Core<Block> for Runtime {
 		fn version() -> RuntimeVersion {
 			VERSION
@@ -493,6 +488,28 @@ impl_runtime_apis! {
 			len: u32,
 		) -> pallet_transaction_payment_rpc_runtime_api::RuntimeDispatchInfo<Balance> {
 			TransactionPayment::query_info(uxt, len)
+		}
+	}
+
+	impl dorr::DorrRuntimeApi<Block> for Runtime {
+		fn get_active_relayers() -> Vec<Vec<u8>> {
+			Dorr::get_active_pks()
+		}
+
+		fn is_active_pk(pk: Vec<u8>) -> bool {
+			Dorr::is_active(pk)
+		}
+
+		fn get_epoch_by_pk(pk: Vec<u8>) -> BlockNumber {
+			Dorr::get_epoch_by_pk(pk)
+		}
+
+		fn get_current_epoch() -> BlockNumber {
+			Dorr::get_current_epoch()
+		}
+
+		fn get_public_randomness(epoch: BlockNumber) -> Hash {
+			Dorr::get_public_randomness(epoch)
 		}
 	}
 }

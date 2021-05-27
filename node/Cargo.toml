@@ -50,6 +50,8 @@ sp-inherents = '2.0.0'
 sp-runtime = '2.0.0'
 sp-transaction-pool = '2.0.0'
 substrate-frame-rpc-system = '2.0.0'
+dorr-rpc = { default-features = false, path = './../../substrate/pallet-dorr-rpc', package = 'pallet-dorr-rpc' }
+dorr = { default-features = false, path = './../../substrate/dorr-pallet', package = 'dorr-pallet' }
 
 [features]
 default = []
