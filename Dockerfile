@@ -1,7 +1,7 @@
 # Note: We don't use Alpine and its packaged Rust/Cargo because they're too often out of date,
 # preventing them from being used to build Substrate/Polkadot.
 
-FROM phusion/baseimage:0.10.2 as builder
+FROM phusion/baseimage:0.11 as builder
 LABEL description="This is the build stage for the node. Here the binary is created."
 
 ENV DEBIAN_FRONTEND=noninteractive
@@ -21,12 +21,11 @@ RUN curl https://sh.rustup.rs -sSf | sh -s -- -y && \
 	rustup toolchain install $RUST_TOOLCHAIN && \
 	rustup target add wasm32-unknown-unknown --toolchain $RUST_TOOLCHAIN && \
 	rustup default $RUST_TOOLCHAIN && \
-	cargo update && \
-  cargo build "--$PROFILE"
+	cargo build "--$PROFILE"
 
 # ===== SECOND STAGE ======
 
-FROM phusion/baseimage:0.10.2
+FROM phusion/baseimage:0.11
 LABEL description="This is the 2nd stage: a very small image that contains the doton-substrate-chain binary and will be used by users."
 ARG PROFILE=release
 
