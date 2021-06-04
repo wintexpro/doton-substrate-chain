@@ -50,8 +50,8 @@ sp-inherents = '2.0.0'
 sp-runtime = '2.0.0'
 sp-transaction-pool = '2.0.0'
 substrate-frame-rpc-system = '2.0.0'
-dorr-rpc = { default-features = false, git = 'https://github.com/wintexpro/doton-substrate', package = 'pallet-dorr-rpc', tag = 'v1.4.3' }
-dorr = { default-features = false, git = 'https://github.com/wintexpro/doton-substrate', package = 'dorr-pallet', tag = 'v1.4.3' }
+dorr-rpc = { default-features = false, git = 'https://github.com/wintexpro/doton-substrate', package = 'pallet-dorr-rpc', tag = 'v1.4.4' }
+dorr = { default-features = false, git = 'https://github.com/wintexpro/doton-substrate', package = 'dorr-pallet', tag = 'v1.4.4' }
 
 [features]
 default = []

@@ -741,13 +741,14 @@ dependencies = [
 
 [[package]]
 name = "chainbridge"
-version = "0.0.2"
-source = "git+https://github.com/wintexpro/doton-substrate?tag=v1.4.3#44a5167bb8a8a2f4dc326463347ad287b790eb19"
+version = "0.1.0"
+source = "git+https://github.com/wintexpro/doton-substrate?tag=v1.4.4#d5cd742f57cb4f31f20d0eb4b275bca76a1e8553"
 dependencies = [
- "dorr-pallet 0.0.1 (git+https://github.com/wintexpro/doton-substrate?tag=v1.4.3)",
+ "dorr-pallet",
  "frame-support",
  "frame-system",
  "pallet-balances",
+ "pallet-randomness-collective-flip",
  "parity-scale-codec",
  "rustc-hex",
  "serde",
@@ -1234,8 +1235,8 @@ dependencies = [
 
 [[package]]
 name = "dorr-pallet"
-version = "0.0.1"
-source = "git+https://github.com/wintexpro/doton-substrate?tag=v1.4.3#44a5167bb8a8a2f4dc326463347ad287b790eb19"
+version = "0.1.0"
+source = "git+https://github.com/wintexpro/doton-substrate?tag=v1.4.4#d5cd742f57cb4f31f20d0eb4b275bca76a1e8553"
 dependencies = [
  "frame-support",
  "frame-system",
@@ -1255,30 +1256,10 @@ dependencies = [
 ]
 
 [[package]]
-name = "dorr-pallet"
-version = "0.0.1"
-dependencies = [
- "frame-support",
- "frame-system",
- "merlin 3.0.0",
- "pallet-randomness-collective-flip",
- "parity-scale-codec",
- "rustc-hex",
- "schnorrkel 0.10.1",
- "sp-api",
- "sp-arithmetic",
- "sp-core",
- "sp-io",
- "sp-runtime",
- "sp-std",
- "substrate-wasm-builder-runner",
-]
-
-[[package]]
 name = "doton-substrate-chain"
 version = "2.0.0"
 dependencies = [
- "dorr-pallet 0.0.1",
+ "dorr-pallet",
  "doton-substrate-chain-runtime",
  "frame-benchmarking",
  "frame-benchmarking-cli",
@@ -1316,7 +1297,7 @@ name = "doton-substrate-chain-runtime"
 version = "2.0.0"
 dependencies = [
  "chainbridge",
- "dorr-pallet 0.0.1 (git+https://github.com/wintexpro/doton-substrate?tag=v1.4.3)",
+ "dorr-pallet",
  "example-erc721",
  "example-pallet",
  "frame-benchmarking",
@@ -1466,7 +1447,7 @@ checksum = "f7531096570974c3a9dcf9e4b8e1cede1ec26cf5046219fb3b9d897503b9be59"
 [[package]]
 name = "example-erc721"
 version = "0.0.1"
-source = "git+https://github.com/wintexpro/doton-substrate?tag=v1.4.3#44a5167bb8a8a2f4dc326463347ad287b790eb19"
+source = "git+https://github.com/wintexpro/doton-substrate?tag=v1.4.4#d5cd742f57cb4f31f20d0eb4b275bca76a1e8553"
 dependencies = [
  "chainbridge",
  "frame-support",
@@ -1483,7 +1464,7 @@ dependencies = [
 [[package]]
 name = "example-pallet"
 version = "0.0.1"
-source = "git+https://github.com/wintexpro/doton-substrate?tag=v1.4.3#44a5167bb8a8a2f4dc326463347ad287b790eb19"
+source = "git+https://github.com/wintexpro/doton-substrate?tag=v1.4.4#d5cd742f57cb4f31f20d0eb4b275bca76a1e8553"
 dependencies = [
  "chainbridge",
  "example-erc721",
@@ -3896,9 +3877,10 @@ dependencies = [
 
 [[package]]
 name = "pallet-dorr-rpc"
-version = "0.0.1"
+version = "0.1.0"
+source = "git+https://github.com/wintexpro/doton-substrate?tag=v1.4.4#d5cd742f57cb4f31f20d0eb4b275bca76a1e8553"
 dependencies = [
- "dorr-pallet 0.0.1",
+ "dorr-pallet",
  "frame-system",
  "jsonrpc-core",
  "jsonrpc-core-client",
@@ -6257,9 +6239,10 @@ checksum = "0f0242b8e50dd9accdd56170e94ca1ebd223b098eb9c83539a6e367d0f36ae68"
 [[package]]
 name = "simple-message-pallet"
 version = "0.0.1"
-source = "git+https://github.com/wintexpro/doton-substrate?tag=v1.4.3#44a5167bb8a8a2f4dc326463347ad287b790eb19"
+source = "git+https://github.com/wintexpro/doton-substrate?tag=v1.4.4#d5cd742f57cb4f31f20d0eb4b275bca76a1e8553"
 dependencies = [
  "chainbridge",
+ "dorr-pallet",
  "frame-support",
  "frame-system",
  "parity-scale-codec",
